@@ -22,17 +22,17 @@ public class CartBlockListener extends BlockListener{
 
 	public void onBlockDispense(BlockDispenseEvent event){
 		track = 0;
-		ItemStack despenseItem = event.getItem();
-		event.setCancelled(true);
+		ItemStack dispenseItem = event.getItem();
 		Block block = event.getBlock();
+		event.setCancelled(true);
 
-		if (despenseItem.getTypeId() == 328 ){
+		if (dispenseItem.getTypeId() == 328  ){
+
 			Location loc = block.getLocation();
-
+				
 			for(BlockFace face : BlockFace.values()) {
 				
-				if (block.getFace(face).getTypeId() == 66) {
-					log.info(Integer.toString(face.getModZ()));
+				if (block.getFace(face).getTypeId() == 66|| block.getFace(face).getTypeId() == 27 || block.getFace(face).getTypeId() == 28) {
 					loc.setY(block.getY() + face.getModY());
 					loc.setZ(block.getZ() + face.getModZ());
 					loc.setX(block.getX() + face.getModX());
