@@ -13,7 +13,7 @@ public class CartBlockListener extends BlockListener{
 
 	public final CartDispense plugin;
 	Logger log = Logger.getLogger("Minecraft");
-	int track = 0;
+
 	
 	public CartBlockListener(CartDispense instance) {
 		this.plugin = instance;
@@ -21,27 +21,26 @@ public class CartBlockListener extends BlockListener{
 
 
 	public void onBlockDispense(BlockDispenseEvent event){
-		track = 0;
+		boolean trackAround = false;
+		
 		ItemStack dispenseItem = event.getItem();
 		Block block = event.getBlock();
 		event.setCancelled(true);
 
-		if (dispenseItem.getTypeId() == 328  ){
+		if (dispenseItem.getTypeId() == 328){
 
 			Location loc = block.getLocation();
 				
 			for(BlockFace face : BlockFace.values()) {
-				
 				if (block.getFace(face).getTypeId() == 66|| block.getFace(face).getTypeId() == 27 || block.getFace(face).getTypeId() == 28) {
 					loc.setY(block.getY() + face.getModY());
 					loc.setZ(block.getZ() + face.getModZ());
 					loc.setX(block.getX() + face.getModX());
-					track = 1;
+					trackAround = true;
 				}
-				
-				}
+			}
 
-			if (track ==1){
+			if (trackAround = true){
 				this.plugin.getServer().getWorld("world").spawnMinecart(loc);
 
 			}
