@@ -25,9 +25,9 @@ public class CartBlockListener extends BlockListener{
 		
 		ItemStack dispenseItem = event.getItem();
 		Block block = event.getBlock();
-		event.setCancelled(true);
 
 		if (dispenseItem.getTypeId() == 328){
+			event.setCancelled(true);
 
 			Location loc = block.getLocation();
 				
