@@ -20,7 +20,7 @@ public class CartDispense extends JavaPlugin {
 	}
     
 	public void onEnable(){
-		log.info("CartDispense v0.2 - By Vlad Cazan");
+		log.info("CartDispense v0.3 - By Vlad Cazan");
 		main();
 
 	}
