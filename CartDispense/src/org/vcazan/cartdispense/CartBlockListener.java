@@ -1,7 +1,6 @@
 package org.vcazan.cartdispense;
 
 import java.util.logging.Logger;
-
 import org.bukkit.block.Block;
 import org.bukkit.block.BlockFace;
 import org.bukkit.event.block.BlockListener;
@@ -38,6 +37,21 @@ public class CartBlockListener extends BlockListener{
 					loc.setX(block.getX() + face.getModX() );
 					trackAround = true;
 				}
+				
+			}
+			Location under = block.getLocation();
+			under.setY(under.getY()-1);
+			
+			Block underBlock = under.getBlock();
+			for(BlockFace face : BlockFace.values()) {
+				if (underBlock.getFace(face).getTypeId() == 66|| underBlock.getFace(face).getTypeId() == 27 || underBlock.getFace(face).getTypeId() == 28) {
+					log.info(Integer.toString(block.getFace(face).getTypeId()));
+					loc.setY(block.getY() + face.getModY() );
+					loc.setZ(block.getZ() + face.getModZ() );
+					loc.setX(block.getX() + face.getModX() );
+					trackAround = true;
+				}
+				
 			}
 
 			if (trackAround == true){
