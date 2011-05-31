@@ -1,5 +1,7 @@
 package org.vcazan.cartdispense;
 
+import java.util.logging.Logger;
+
 import org.bukkit.block.Block;
 import org.bukkit.block.BlockFace;
 import org.bukkit.event.block.BlockListener;
@@ -14,6 +16,7 @@ public class CartBlockListener extends BlockListener{
 	public CartBlockListener(CartDispense instance) {
 		this.plugin = instance;
 	}
+	Logger log = Logger.getLogger("Minecraft");
 
 
 	public void onBlockDispense(BlockDispenseEvent event){
@@ -29,6 +32,7 @@ public class CartBlockListener extends BlockListener{
 				
 			for(BlockFace face : BlockFace.values()) {
 				if (block.getFace(face).getTypeId() == 66|| block.getFace(face).getTypeId() == 27 || block.getFace(face).getTypeId() == 28) {
+					log.info(Integer.toString(block.getFace(face).getTypeId()));
 					loc.setY(block.getY() + face.getModY() );
 					loc.setZ(block.getZ() + face.getModZ() );
 					loc.setX(block.getX() + face.getModX() );
@@ -36,7 +40,7 @@ public class CartBlockListener extends BlockListener{
 				}
 			}
 
-			if (trackAround = true){
+			if (trackAround == true){
 				this.plugin.getServer().getWorld("world").spawnMinecart(loc);
 
 			}
