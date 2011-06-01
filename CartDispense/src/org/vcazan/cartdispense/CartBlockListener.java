@@ -16,48 +16,34 @@ public class CartBlockListener extends BlockListener{
 		this.plugin = instance;
 	}
 	Logger log = Logger.getLogger("Minecraft");
+	Location spawnCart;
 
 
 	public void onBlockDispense(BlockDispenseEvent event){
-		boolean trackAround = false;
-		
 		ItemStack dispenseItem = event.getItem();
-		Block block = event.getBlock();
-
 		if (dispenseItem.getTypeId() == 328){
 			event.setCancelled(true);
-
-			Location loc = block.getLocation();
-				
-			for(BlockFace face : BlockFace.values()) {
-				if (block.getFace(face).getTypeId() == 66|| block.getFace(face).getTypeId() == 27 || block.getFace(face).getTypeId() == 28) {
-					loc.setY(block.getY() + face.getModY() );
-					loc.setZ(block.getZ() + face.getModZ() );
-					loc.setX(block.getX() + face.getModX() );
-					trackAround = true;
-				}
-				
-			}
+			Block block = event.getBlock();
 			Location under = block.getLocation();
-			under.setY(under.getY()-1);
+			under.setY(block.getY()-1);
 			
-			Block underBlock = under.getBlock();
-			for(BlockFace face : BlockFace.values()) {
-				if (underBlock.getFace(face).getTypeId() == 66|| underBlock.getFace(face).getTypeId() == 27 || underBlock.getFace(face).getTypeId() == 28) {
-					loc.setY(block.getY() + face.getModY() );
-					loc.setZ(block.getZ() + face.getModZ() );
-					loc.setX(block.getX() + face.getModX() );
-					trackAround = true;
-				}
-				
-			}
-
-			if (trackAround == true){
-				this.plugin.getServer().getWorld("world").spawnMinecart(loc);
-
-			}
+			if (checkForTrack(block.getLocation()) == true || checkForTrack(under) == true){
+				this.plugin.getServer().getWorld("world").spawnMinecart(spawnCart);
+			}			
 		}
-
-
+	}
+	public boolean checkForTrack(Location loc){
+		Block block = loc.getBlock();
+		for(BlockFace face : BlockFace.values()) {
+			if (block.getFace(face).getTypeId() == 66|| block.getFace(face).getTypeId() == 27 || block.getFace(face).getTypeId() == 28) {
+				loc.setY(block.getY() + face.getModY() );
+				loc.setZ(block.getZ() + face.getModZ() );
+				loc.setX(block.getX() + face.getModX() );
+				spawnCart = loc;
+				return true;
+			}
+			
+		}
+		return false;
 	}
 }
