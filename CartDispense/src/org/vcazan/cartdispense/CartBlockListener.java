@@ -31,7 +31,6 @@ public class CartBlockListener extends BlockListener{
 				
 			for(BlockFace face : BlockFace.values()) {
 				if (block.getFace(face).getTypeId() == 66|| block.getFace(face).getTypeId() == 27 || block.getFace(face).getTypeId() == 28) {
-					log.info(Integer.toString(block.getFace(face).getTypeId()));
 					loc.setY(block.getY() + face.getModY() );
 					loc.setZ(block.getZ() + face.getModZ() );
 					loc.setX(block.getX() + face.getModX() );
@@ -45,7 +44,6 @@ public class CartBlockListener extends BlockListener{
 			Block underBlock = under.getBlock();
 			for(BlockFace face : BlockFace.values()) {
 				if (underBlock.getFace(face).getTypeId() == 66|| underBlock.getFace(face).getTypeId() == 27 || underBlock.getFace(face).getTypeId() == 28) {
-					log.info(Integer.toString(block.getFace(face).getTypeId()));
 					loc.setY(block.getY() + face.getModY() );
 					loc.setZ(block.getZ() + face.getModZ() );
 					loc.setX(block.getX() + face.getModX() );
