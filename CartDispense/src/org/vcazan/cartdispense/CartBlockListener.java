@@ -1,12 +1,14 @@
 package org.vcazan.cartdispense;
 
 import java.util.logging.Logger;
+
+import org.bukkit.Location;
+import org.bukkit.World;
 import org.bukkit.block.Block;
 import org.bukkit.block.BlockFace;
-import org.bukkit.event.block.BlockListener;
 import org.bukkit.event.block.BlockDispenseEvent;
+import org.bukkit.event.block.BlockListener;
 import org.bukkit.inventory.ItemStack;
-import org.bukkit.Location;
 
 public class CartBlockListener extends BlockListener{
 
@@ -28,7 +30,11 @@ public class CartBlockListener extends BlockListener{
 			under.setY(block.getY()-1);
 			
 			if (checkForTrack(block.getLocation()) == true || checkForTrack(under) == true){
-				this.plugin.getServer().getWorld("world").spawnMinecart(spawnCart);
+				for(World world : this.plugin.getServer().getWorlds()) {
+					if(world.getBlockAt(block.getLocation()) == block){
+						world.spawnMinecart(spawnCart);
+					}
+				}
 			}			
 		}
 	}
