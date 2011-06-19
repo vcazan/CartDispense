@@ -23,7 +23,7 @@ public class CartBlockListener extends BlockListener{
 
 	public void onBlockDispense(BlockDispenseEvent event){
 		ItemStack dispenseItem = event.getItem();
-		if (dispenseItem.getTypeId() == 328){
+		if (dispenseItem.getTypeId() == 328 ||dispenseItem.getTypeId() == 343 || dispenseItem.getTypeId() == 342){
 			event.setCancelled(true);
 			Block block = event.getBlock();
 			Location under = block.getLocation();
@@ -32,7 +32,11 @@ public class CartBlockListener extends BlockListener{
 			if (checkForTrack(block.getLocation()) == true || checkForTrack(under) == true){
 				for(World world : this.plugin.getServer().getWorlds()) {
 					if(world.getBlockAt(block.getLocation()) == block){
-						world.spawnMinecart(spawnCart);
+						 switch (dispenseItem.getTypeId()) {
+						 case 328:world.spawnMinecart(spawnCart); break;
+						 case 343:world.spawnPoweredMinecart(spawnCart); break;
+						 case 342:world.spawnStorageMinecart(spawnCart); break;
+						 }
 					}
 				}
 			}			
