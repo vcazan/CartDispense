@@ -42,6 +42,7 @@ public class CartBlockListener extends BlockListener{
 			}			
 		}
 	}
+	
 	public boolean checkForTrack(Location loc){
 		Block block = loc.getBlock();
 		for(BlockFace face : BlockFace.values()) {
