@@ -9,6 +9,8 @@ import org.bukkit.block.BlockFace;
 import org.bukkit.craftbukkit.entity.CraftMinecart;
 import org.bukkit.craftbukkit.entity.CraftPoweredMinecart;
 import org.bukkit.craftbukkit.entity.CraftStorageMinecart;
+import org.bukkit.craftbukkit.entity.CraftBoat;
+
 import org.bukkit.event.block.BlockDispenseEvent;
 import org.bukkit.event.block.BlockListener;
 import org.bukkit.inventory.ItemStack;
@@ -35,10 +37,12 @@ public class CartBlockListener extends BlockListener{
 			if (checkForTrack(block.getLocation()) == true || checkForTrack(under) == true){
 				for(World world : this.plugin.getServer().getWorlds()) {
 					if(world.getBlockAt(block.getLocation()) == block){
-						 switch (dispenseItem.getTypeId()) {
+						switch (dispenseItem.getTypeId()) {
 						 case 328:world.spawn(spawnCart, CraftMinecart.class); break;
 						 case 343:world.spawn(spawnCart, CraftPoweredMinecart.class); break;
 						 case 342:world.spawn(spawnCart, CraftStorageMinecart.class); break;
+						 case 333:world.spawn(spawnCart, CraftBoat.class); break;
+
 						 }
 					}
 				}
@@ -49,7 +53,7 @@ public class CartBlockListener extends BlockListener{
 	public boolean checkForTrack(Location loc){
 		Block block = loc.getBlock();
 		for(BlockFace face : BlockFace.values()) {
-			if (block.getRelative(face).getTypeId() == 66|| block.getRelative(face).getTypeId() == 27 || block.getRelative(face).getTypeId() == 28) {
+			if (block.getRelative(face).getTypeId() == 66|| block.getRelative(face).getTypeId() == 27 || block.getRelative(face).getTypeId() == 28 || block.getRelative(face).getTypeId() == 8) {
 				loc.setY(block.getY() + face.getModY() );
 				loc.setZ(block.getZ() + face.getModZ() );
 				loc.setX(block.getX() + face.getModX() );
