@@ -13,6 +13,7 @@ import org.bukkit.event.block.BlockDispenseEvent;
 import org.bukkit.event.block.BlockListener;
 import org.bukkit.inventory.ItemStack;
 
+
 public class CartBlockListener extends BlockListener{
 
 	public final CartDispense plugin;
@@ -31,17 +32,20 @@ public class CartBlockListener extends BlockListener{
 			Block block = event.getBlock();
 			Location under = block.getLocation();
 			under.setY(block.getY()-1);
-			
+
 			if (checkForTrack(block.getLocation()) == true || checkForTrack(under) == true){
-				for(World world : this.plugin.getServer().getWorlds()) {
-					if(world.getBlockAt(block.getLocation()) == block){
-						 switch (dispenseItem.getTypeId()) {
+				World world = this.plugin.getServer().getWorld("world");
+				//for(World world : this.plugin.getServer().getWorlds()) {
+					//if(world.getBlockAt(block.getLocation()) == block){
+						log.info("world");
+
+						switch (dispenseItem.getTypeId()) {
 						 case 328:world.spawn(spawnCart, CraftMinecart.class); break;
 						 case 343:world.spawn(spawnCart, CraftPoweredMinecart.class); break;
 						 case 342:world.spawn(spawnCart, CraftStorageMinecart.class); break;
 						 }
-					}
-				}
+					//}
+				//}
 			}			
 		}
 	}

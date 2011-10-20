@@ -1,3 +1,0 @@
-name: CartDispense
-main: org.vcazan.cartdispense.CartDispense
-version: 0.07
