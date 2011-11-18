@@ -19,13 +19,13 @@ public class CartDispense extends JavaPlugin {
 	}
     
 	public void onEnable(){
-		log.info("CartDispense v0.9 has loaded.");
+		log.info("CartDispense v0.10 has loaded.");
 		main();
 
 	}
 	
 	public void onDisable(){
-		log.info("CartDispense has unloaded.");
+		log.info("CartDispense v0.10 has unloaded.");
 	}
 	
 }

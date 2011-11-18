@@ -34,18 +34,12 @@ public class CartBlockListener extends BlockListener{
 			under.setY(block.getY()-1);
 
 			if (checkForTrack(block.getLocation()) == true || checkForTrack(under) == true){
-				World world = this.plugin.getServer().getWorld("world");
-				//for(World world : this.plugin.getServer().getWorlds()) {
-					//if(world.getBlockAt(block.getLocation()) == block){
-						log.info("world");
-
-						switch (dispenseItem.getTypeId()) {
-						 case 328:world.spawn(spawnCart, CraftMinecart.class); break;
-						 case 343:world.spawn(spawnCart, CraftPoweredMinecart.class); break;
-						 case 342:world.spawn(spawnCart, CraftStorageMinecart.class); break;
-						 }
-					//}
-				//}
+				World world = block.getLocation().getWorld();
+				switch (dispenseItem.getTypeId()) {
+					 case 328:world.spawn(spawnCart, CraftMinecart.class); break;
+					 case 343:world.spawn(spawnCart, CraftPoweredMinecart.class); break;
+					 case 342:world.spawn(spawnCart, CraftStorageMinecart.class); break;
+				 }
 			}			
 		}
 	}
