@@ -10,21 +10,20 @@ import org.bukkit.craftbukkit.entity.CraftMinecart;
 import org.bukkit.craftbukkit.entity.CraftPoweredMinecart;
 import org.bukkit.craftbukkit.entity.CraftStorageMinecart;
 import org.bukkit.event.block.BlockDispenseEvent;
-import org.bukkit.event.block.BlockListener;
+//import org.bukkit.event.block.BlockListener;
 import org.bukkit.inventory.ItemStack;
 
+import org.bukkit.event.Listener;
+import org.bukkit.event.EventHandler;
+import org.bukkit.event.EventPriority;
 
-public class CartBlockListener extends BlockListener{
 
-	public final CartDispense plugin;
-	
-	public CartBlockListener(CartDispense instance) {
-		this.plugin = instance;
-	}
+public class CartBlockListener implements Listener {
+
 	Logger log = Logger.getLogger("Minecraft");
 	Location spawnCart;
-
-
+	
+	@EventHandler(priority = EventPriority.NORMAL)
 	public void onBlockDispense(BlockDispenseEvent event){
 		ItemStack dispenseItem = event.getItem();
 		if (dispenseItem.getTypeId() == 328 ||dispenseItem.getTypeId() == 343 || dispenseItem.getTypeId() == 342){
