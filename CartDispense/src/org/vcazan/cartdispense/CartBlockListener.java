@@ -6,13 +6,12 @@ import org.bukkit.Location;
 import org.bukkit.World;
 import org.bukkit.block.Block;
 import org.bukkit.block.BlockFace;
+import org.bukkit.block.Dispenser;
 import org.bukkit.craftbukkit.entity.CraftMinecart;
 import org.bukkit.craftbukkit.entity.CraftPoweredMinecart;
 import org.bukkit.craftbukkit.entity.CraftStorageMinecart;
 import org.bukkit.event.block.BlockDispenseEvent;
-//import org.bukkit.event.block.BlockListener;
 import org.bukkit.inventory.ItemStack;
-
 import org.bukkit.event.Listener;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
@@ -39,6 +38,11 @@ public class CartBlockListener implements Listener {
 					 case 343:world.spawn(spawnCart, CraftPoweredMinecart.class); break;
 					 case 342:world.spawn(spawnCart, CraftStorageMinecart.class); break;
 				 }
+				
+				if(CartDispense.getInstance().getConfig().getBoolean("infinitecarts") == false) {
+					Dispenser d = (Dispenser)event.getBlock().getState();
+					d.getInventory().removeItem(dispenseItem);
+				}
 			}			
 		}
 	}
