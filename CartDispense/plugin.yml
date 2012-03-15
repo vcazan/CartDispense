@@ -1,3 +1,12 @@
 name: CartDispense
 main: org.vcazan.cartdispense.CartDispense
-version: 0.10
+version: 0.12
+commands:
+   cartdispensereload:
+      description: Reloads the CartDispense configuration file
+      permission: cartdispense.reload
+      usage: /<command>
+permissions:
+   cartidispense.reload:
+      description: Allows player to reload the CartDispense configuration file
+      default: op
