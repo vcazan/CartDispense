@@ -33,10 +33,16 @@ public class CartBlockListener implements Listener {
 
 			if (checkForTrack(block.getLocation()) == true || checkForTrack(under) == true){
 				World world = block.getLocation().getWorld();
-				switch (dispenseItem.getTypeId()) {
-					 case 328:world.spawn(spawnCart, CraftMinecart.class); break;
-					 case 343:world.spawn(spawnCart, CraftPoweredMinecart.class); break;
-					 case 342:world.spawn(spawnCart, CraftStorageMinecart.class); break;
+				switch (dispenseItem.getType()) {
+					 case MINECART:
+						 world.spawn(spawnCart, CraftMinecart.class); 
+						 break;
+					 case POWERED_MINECART:
+						 world.spawn(spawnCart, CraftPoweredMinecart.class); 
+						 break;
+					 case STORAGE_MINECART:
+						 world.spawn(spawnCart, CraftStorageMinecart.class); 
+						 break;
 				 }
 				
 				if(CartDispense.getInstance().getConfig().getBoolean("infinitecarts") == false) {
