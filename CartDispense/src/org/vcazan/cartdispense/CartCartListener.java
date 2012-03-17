@@ -1,5 +1,7 @@
 package org.vcazan.cartdispense;
 
+import java.util.logging.Logger;
+
 import org.bukkit.event.vehicle.*;
 import org.bukkit.block.Block;
 import org.bukkit.block.Dispenser;
@@ -16,6 +18,8 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 
 public class CartCartListener implements Listener {
+	
+	Logger log = Logger.getLogger("Minecraft");
 	
 	@EventHandler(priority = EventPriority.NORMAL)
 	public void onVehicleBlockCollision(VehicleBlockCollisionEvent event){
@@ -37,10 +41,13 @@ public class CartCartListener implements Listener {
 						i = new ItemStack(Material.MINECART, 1);
 					}
 					
-					d.getInventory().addItem(i);
+					if(d.getInventory().addItem(i).isEmpty()) {
+						cart.remove();
+				    }
+
+				} else {
+					cart.remove();
 				}
-			
-				cart.remove();
 			}
 		}
 	}
