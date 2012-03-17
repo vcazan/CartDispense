@@ -25,7 +25,7 @@ public class CartBlockListener implements Listener {
 	@EventHandler(priority = EventPriority.NORMAL)
 	public void onBlockDispense(BlockDispenseEvent event){
 		ItemStack dispenseItem = event.getItem();
-		if (dispenseItem.getTypeId() == 328 ||dispenseItem.getTypeId() == 343 || dispenseItem.getTypeId() == 342){
+		if (dispenseItem.getTypeId() == 328 ||dispenseItem.getTypeId() == 343 || dispenseItem.getTypeId() == 342) {
 			event.setCancelled(true);
 			Block block = event.getBlock();
 			Location under = block.getLocation();
