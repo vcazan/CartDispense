@@ -13,7 +13,7 @@ public class CartDispense extends JavaPlugin {
 
 	Logger log = Logger.getLogger("Minecraft");
 	private static CartDispense instance = null;
-	private static final float plugin_version = 0.12F; 
+	private static final float plugin_version = 0.13F; 
 	
 	public static CartDispense getInstance() {
 		return instance;
