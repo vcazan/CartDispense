@@ -16,7 +16,6 @@ public class CartDispense extends JavaPlugin {
 
 	Logger log = Logger.getLogger("Minecraft");
 	private static CartDispense instance = null;
-	private PluginDescriptionFile pdffile = this.getDescription();
 	
 	public static CartDispense getInstance() {
 		return instance;
@@ -36,6 +35,7 @@ public class CartDispense extends JavaPlugin {
 		this.saveConfig();
 		
 		//Output to console that we've loaded.
+		PluginDescriptionFile pdffile = this.getDescription();
 		log.info(pdffile.getName() + " v" + pdffile.getVersion() + " has loaded.");
 
 	}
@@ -49,6 +49,7 @@ public class CartDispense extends JavaPlugin {
 		instance = null;
 		
 		//Output to console we're done here.
+		PluginDescriptionFile pdffile = this.getDescription();
 		log.info(pdffile.getName() + "  v" + pdffile.getVersion() + " has unloaded.");
 	}
 	
@@ -62,9 +63,9 @@ public class CartDispense extends JavaPlugin {
 		
 		if(cmd.getName().equalsIgnoreCase("cartdispensereload")) {
 			CartDispense.getInstance().reloadConfig();
-			log.info(pdffile.getName() + " configuration reloaded!");
+			log.info("CartDispense configuration reloaded!");
 			if(player != null ) {
-				player.sendMessage(ChatColor.BLUE + pdffile.getName() + " configuration reloaded");
+				player.sendMessage(ChatColor.BLUE + "CartDispense configuration reloaded");
 			}
 			return true;
 		}
