@@ -1,6 +1,7 @@
 name: CartDispense
 main: org.vcazan.cartdispense.CartDispense
-version: 0.12
+version: 0.15
+description: Spawns cart on tracks if tracks exist adjacent to dispenser face.
 commands:
    cartdispensereload:
       description: Reloads the CartDispense configuration file
