@@ -1,6 +1,9 @@
 package org.vcazan.cartdispense;
 
 import java.util.logging.Logger;
+
+import org.bukkit.ChatColor;
+import org.bukkit.plugin.PluginDescriptionFile;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.command.Command;
@@ -13,18 +16,14 @@ public class CartDispense extends JavaPlugin {
 
 	Logger log = Logger.getLogger("Minecraft");
 	private static CartDispense instance = null;
-	private static final float plugin_version = 0.13F; 
 	
 	public static CartDispense getInstance() {
 		return instance;
 	}
 	
-	public static float getVersion() {
-		return plugin_version;
-	}
-	
 	
 	public void onEnable(){
+		//Register with PluginManager and register events.
 		PluginManager pm = getServer().getPluginManager();
 		instance = this;
 		
@@ -35,7 +34,9 @@ public class CartDispense extends JavaPlugin {
 		this.getConfig().options().copyHeader(true);
 		this.saveConfig();
 		
-		log.info("CartDispense v" + CartDispense.getVersion() + " has loaded.");
+		//Output to console that we've loaded.
+		PluginDescriptionFile pdffile = this.getDescription();
+		log.info(pdffile.getName() + " v" + pdffile.getVersion() + " has loaded.");
 
 	}
 	
@@ -44,10 +45,15 @@ public class CartDispense extends JavaPlugin {
 	}
 	
 	public void onDisable(){
+		//Unload instance of CartDispense
 		instance = null;
-		log.info("CartDispense v" + CartDispense.getVersion() + " has unloaded.");
+		
+		//Output to console we're done here.
+		PluginDescriptionFile pdffile = this.getDescription();
+		log.info(pdffile.getName() + "  v" + pdffile.getVersion() + " has unloaded.");
 	}
 	
+	//Check to see if we're sent a command
 	public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
 		Player player = null;
 		
@@ -57,9 +63,9 @@ public class CartDispense extends JavaPlugin {
 		
 		if(cmd.getName().equalsIgnoreCase("cartdispensereload")) {
 			CartDispense.getInstance().reloadConfig();
-			log.info("CartDispense v" + CartDispense.getVersion() + " configuration reloaded!");
+			log.info("CartDispense configuration reloaded!");
 			if(player != null ) {
-				player.sendMessage("CartDispense configuration reloaded");
+				player.sendMessage(ChatColor.BLUE + "CartDispense configuration reloaded");
 			}
 			return true;
 		}
